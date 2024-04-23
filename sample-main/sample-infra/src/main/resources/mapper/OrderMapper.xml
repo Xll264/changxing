@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hixtrip.sample.infra.db.mapper.OrderMapper">
+
+    <insert id="insertOrder">
+        INSERT INTO orders (id, user_id, sku_id, amount, money, pay_time, pay_status, del_flag, create_by, create_time, update_by, update_time)
+        VALUES (#{id}, #{userId}, #{skuId}, #{amount}, #{money}, #{payTime}, #{payStatus}, #{delFlag}, #{createBy}, #{createTime}, #{updateBy}, #{updateTime})
+    </insert>
+
+    <update id="updateOrder">
+        UPDATE orders
+        SET pay_status = #{payStatus}, pay_time = #{payTime}
+        WHERE id = #{id}
+    </update>
+
+    <select id="queryOrderById" resultType="com.hixtrip.sample.infra.db.dataobject.OrderDO">
+        SELECT * FROM orders WHERE id = #{id}
+    </select>
+</mapper>
